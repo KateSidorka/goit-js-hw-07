@@ -19,13 +19,15 @@ gallery.insertAdjacentHTML('afterbegin', galleryList);
 
 gallery.addEventListener('click', onClick);
 
-function onClick(evt){
- if (evt.target.tagName !== 'IMG') {
+function onClick(event){
+    event.preventDefault();
+    
+ if (event.target.tagName !== 'IMG') {
         return;
     }
-    evt.preventDefault();
+   
     const instance = basicLightbox.create(`
-		<img width="1400" height="900" src="${evt.target.dataset.source}">
+		<img width="1400" height="900" src="${event.target.dataset.source}">
 	`, {
         onShow: () => {
             document.addEventListener('keydown', closeModal);
@@ -36,8 +38,8 @@ function onClick(evt){
     });
     instance.show();
     
-        function closeModal(evt) {
-       if (evt.code !== 'Escape') {
+        function closeModal(event) {
+       if (event.code !== 'Escape') {
            return;
        } 
             instance.close();
