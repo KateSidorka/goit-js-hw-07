@@ -17,8 +17,9 @@ alt="${description}"
 
 gallery.insertAdjacentHTML('afterbegin', galleryList);
 
+gallery.addEventListener('click', onClick);
 
-gallery.onClick = (evt) => {
+function onClick(evt){
  if (evt.target.tagName !== 'IMG') {
         return;
     }
